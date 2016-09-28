@@ -17,10 +17,18 @@ class IdeasContainer extends Component {
     })
   }
 
+  handleUpdate = (updatedIdea) => {
+    this.props.dispatch({
+      type: 'UPDATE_IDEA',
+      data: updatedIdea
+    })
+  }
+
   render() {
     return (
       <Ideas ideas={ this.props.ideas }
              handleDelete={ this.handleDelete }
+             updateIdea={ this.handleUpdate }
       />
     )
   }

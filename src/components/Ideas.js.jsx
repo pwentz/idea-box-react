@@ -8,6 +8,7 @@ class Ideas extends Component {
         <div>
           <Idea idea={ idea }
                 removeIdea={ this.props.handleDelete }
+                passUpdate={ this.props.updateIdea }
                 id={ index }
           />
         </div>
