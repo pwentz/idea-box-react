@@ -1,13 +1,15 @@
+import Idea from './Idea.js.jsx'
 import React, { Component } from 'react';
-// import Idea from './Idea.js.jsx'
 
 class Ideas extends Component {
   render() {
-    let ideas = this.props.ideas.map( idea => {
+    let ideas = this.props.ideas.map((idea, index) => {
       return (
         <div>
-          <p>{ idea.title }</p>
-          <p>{ idea.body }</p>
+          <Idea idea={ idea }
+                removeIdea={ this.props.handleDelete }
+                id={ index }
+          />
         </div>
       )
     })

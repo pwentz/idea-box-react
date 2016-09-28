@@ -3,9 +3,16 @@ import React, { Component } from 'react';
 class Idea extends Component {
   render() {
     return (
-      <div>
-        <p>{ this.props.title }</p>
-        <p>{ this.props.body }</p>
+      <div className='idea'
+           id={ this.props.id }
+      >
+        <p>{ this.props.idea.title }</p>
+        <p>{ this.props.idea.body }</p>
+        <button
+          onClick={ this.props.removeIdea.bind(null, this.props.id) }
+        >
+          x
+        </button>
       </div>
     )
   }

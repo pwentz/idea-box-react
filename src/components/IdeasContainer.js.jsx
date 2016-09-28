@@ -10,9 +10,18 @@ class IdeasContainer extends Component {
     }
   }
 
+  handleDelete = (id) => {
+    this.props.dispatch({
+      type: 'DESTROY_IDEA',
+      id: id
+    })
+  }
+
   render() {
     return (
-      <Ideas ideas={ this.props.ideas }/>
+      <Ideas ideas={ this.props.ideas }
+             handleDelete={ this.handleDelete }
+      />
     )
   }
 }
