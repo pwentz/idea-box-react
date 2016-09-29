@@ -22,7 +22,8 @@ class NewIdeaContainer extends Component {
   handleNewIdea = () => {
     this.props.dispatch({
       type: 'ADD_IDEA',
-      data: { title: this.state.currentTitle,
+      data: { id: new Date().valueOf(),
+              title: this.state.currentTitle,
               body: this.state.currentBody }
     })
   }

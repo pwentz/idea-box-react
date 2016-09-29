@@ -1,6 +1,16 @@
 const ideaReducer = (state = { ideas: [] }, action) => {
   switch(action.type) {
+    case 'GET_IDEAS':
+      const storageIdeas = Object.keys(localStorage).map(id => {
+                            return JSON.parse(localStorage.getItem(id))
+                           })
+       return {
+         ...state,
+         ideas: storageIdeas.reverse()
+       }
+
     case 'ADD_IDEA':
+      localStorage.setItem(action.data.id, JSON.stringify(action.data))
       const currentIdeas = [action.data, ...state.ideas]
       return {
         ...state,
@@ -8,8 +18,9 @@ const ideaReducer = (state = { ideas: [] }, action) => {
       }
 
     case 'DESTROY_IDEA':
-      let stateIdeas = state.ideas.filter(( idea, index ) => {
-        return index !== action.id
+      localStorage.removeItem(action.id)
+      let stateIdeas = state.ideas.filter( idea => {
+        return idea.id !== action.id
       })
       return {
         ...state,
@@ -17,9 +28,16 @@ const ideaReducer = (state = { ideas: [] }, action) => {
       }
 
     case 'UPDATE_IDEA':
-      let updatedIdeas = state.ideas.map((idea, index) => {
-        if (action.data.id === index) return action.data
-        if (action.data.id !== index) return idea
+      localStorage.clear()
+      let updatedIdeas = state.ideas.map(idea => {
+        if (idea.id === action.data.id) {
+          localStorage.setItem(idea.id, JSON.stringify(action.data))
+          return action.data
+        }
+        else {
+          localStorage.setItem(idea.id, JSON.stringify(idea))
+          return idea
+        }
       })
       return {
         ...state,

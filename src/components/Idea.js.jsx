@@ -21,7 +21,7 @@ class Idea extends Component {
   handleEdit = () => {
     if (this.state.editable) {
       let updatedIdea = {
-        id: this.props.id,
+        id: this.props.idea.id,
         title: this.state.title || this.props.idea.title,
         body: this.state.body || this.props.idea.body
       }
@@ -41,9 +41,10 @@ class Idea extends Component {
                                                : 'Edit'
     return (
       <div className='idea'
-           id={ this.props.id }
+           id={ this.props.idea.id }
       >
         { title }
+        <br />
         { body }
 
         <button
@@ -52,7 +53,7 @@ class Idea extends Component {
           { editButtonText }
         </button>
         <button
-          onClick={ this.props.removeIdea.bind(null, this.props.id) }
+          onClick={ this.props.removeIdea.bind(null, this.props.idea.id) }
         >
           x
         </button>
