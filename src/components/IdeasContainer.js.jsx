@@ -30,11 +30,29 @@ class IdeasContainer extends Component {
     })
   }
 
+  handleTitle = (id, event) => {
+    this.props.dispatch({
+      type: 'UPDATE_TITLE',
+      id: id,
+      data: event.target.value
+    })
+  }
+
+  handleBody = (id, event) => {
+    this.props.dispatch({
+      type: 'UPDATE_BODY',
+      id: id,
+      data: event.target.value
+    })
+  }
+
   render() {
     return (
       <Ideas ideas={ this.props.ideas }
              handleDelete={ this.handleDelete }
              updateIdea={ this.handleUpdate }
+             updateTitle={ this.handleTitle }
+             updateBody={ this.handleBody }
       />
     )
   }
